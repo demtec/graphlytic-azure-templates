@@ -10,16 +10,19 @@
         },
         "imageType": {
             "type": "string",
+            "defaultValue": "Public",
             "allowedValues": [
                 "Public",
                 "Private"
             ]
         },
         "imageName": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "demtec/graphlytic:latest"
         },
         "osType": {
             "type": "string",
+            "defaultValue": "Linux",
             "allowedValues": [
                 "Linux",
                 "Windows"
@@ -33,6 +36,7 @@
         },
         "restartPolicy": {
             "type": "string",
+            "defaultValue": "OnFailure",
             "allowedValues": [
                 "OnFailure",
                 "Always",
@@ -40,10 +44,17 @@
             ]
         },
         "ipAddressType": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "Public"
         },
         "ports": {
-            "type": "array"
+            "type": "array",
+            "defaultValue": [
+                {
+                    "port": "8080",
+                    "protocol": "TCP"
+                }
+            ]
         }
     },
     "resources": [
