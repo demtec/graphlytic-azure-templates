@@ -1,0 +1,7 @@
+version: "3"
+services:
+  application:
+    image: demtec/graphlytic:latest
+    volumes:
+      - ${WEBAPP_STORAGE_HOME}/site/wwwroot:/var/www/html
+      - ${WEBAPP_STORAGE_HOME}/volume:/usr/share/graphlytic/volume

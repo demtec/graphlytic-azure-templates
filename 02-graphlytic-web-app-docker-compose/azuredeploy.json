@@ -1,0 +1,69 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "type": "string",
+            "defaultValue": "[resourceGroup().location]"
+        },
+        "subscriptionId": {
+            "type": "string",
+            "defaultValue": "[subscription().subscriptionId]"
+        },
+        "name": {
+            "type": "string"
+        },
+        "sku": {
+            "type": "string",
+            "defaultValue": "P1V2",
+            "metadata": {
+                "description": "The SKU of App Service Plan."
+            }
+        }
+    },
+    "variables": {
+        "appServicePlanPortalName": "[concat('AppServicePlan_', parameters('name'))]"
+    },
+    "resources": [{
+            "type": "Microsoft.Web/serverfarms",
+            "apiVersion": "2020-06-01",
+            "name": "[variables('appServicePlanPortalName')]",
+            "location": "[parameters('location')]",
+            "sku": {
+                "name": "[parameters('sku')]"
+            },
+            "kind": "linux",
+            "properties": {
+                "reserved": true
+            }
+        },
+        {
+            "apiVersion": "2018-11-01",
+            "name": "[parameters('name')]",
+            "type": "Microsoft.Web/sites",
+            "location": "[parameters('location')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanPortalName'))]"
+            ],
+            "properties": {
+                "name": "[parameters('name')]",
+                "httpsOnly": true,
+                "siteConfig": {
+                    "appSettings": [{
+                            "name": "DOCKER_REGISTRY_SERVER_URL",
+                            "value": "https://index.docker.io"
+                        },
+                        {
+                            "name": "WEBSITES_ENABLE_APP_SERVICE_STORAGE",
+                            "value": true
+                        }
+                    ],
+                    "linuxFxVersion": "COMPOSE|dmVyc2lvbjogIjMiCnNlcnZpY2VzOgogIGFwcGxpY2F0aW9uOgogICAgaW1hZ2U6IGRlbXRlYy9ncmFwaGx5dGljOjMuNS4wLXJjMwogICAgdm9sdW1lczoKICAgICAgLSAke1dFQkFQUF9TVE9SQUdFX0hPTUV9L3NpdGUvd3d3cm9vdDovdmFyL3d3dy9odG1sCiAgICAgIC0gJHtXRUJBUFBfU1RPUkFHRV9IT01FfS92b2x1bWU6L3Vzci9zaGFyZS9ncmFwaGx5dGljL3ZvbHVtZQ==",
+                    "alwaysOn": false
+                },
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanPortalName'))]",
+                "clientAffinityEnabled": false
+            }
+        }
+    ]
+}
