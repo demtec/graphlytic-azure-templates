@@ -58,7 +58,7 @@
                             "value": true
                         }
                     ],
-                    "linuxFxVersion": "COMPOSE|dmVyc2lvbjogIjMiCnNlcnZpY2VzOgogIGFwcGxpY2F0aW9uOgogICAgaW1hZ2U6IGRlbXRlYy9ncmFwaGx5dGljOjMuNS4wLXJjMwogICAgdm9sdW1lczoKICAgICAgLSAke1dFQkFQUF9TVE9SQUdFX0hPTUV9L3NpdGUvd3d3cm9vdDovdmFyL3d3dy9odG1sCiAgICAgIC0gJHtXRUJBUFBfU1RPUkFHRV9IT01FfS92b2x1bWU6L3Vzci9zaGFyZS9ncmFwaGx5dGljL3ZvbHVtZQ==",
+                    "linuxFxVersion": "COMPOSE|dmVyc2lvbjogIjMiCnNlcnZpY2VzOgogIGFwcGxpY2F0aW9uOgogICAgaW1hZ2U6IGRlbXRlYy9ncmFwaGx5dGljOmxhdGVzdAogICAgdm9sdW1lczoKICAgICAgLSAke1dFQkFQUF9TVE9SQUdFX0hPTUV9L3NpdGUvd3d3cm9vdDovdmFyL3d3dy9odG1sCiAgICAgIC0gJHtXRUJBUFBfU1RPUkFHRV9IT01FfS92b2x1bWU6L3Vzci9zaGFyZS9ncmFwaGx5dGljL3ZvbHVtZQ==",
                     "alwaysOn": false
                 },
                 "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanPortalName'))]",
